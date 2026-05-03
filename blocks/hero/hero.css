@@ -1,0 +1,136 @@
+.hero-container .hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero {
+  position: relative;
+  padding: 120px 24px 80px;
+  min-height: 500px;
+  background: var(--carbon-900);
+  color: var(--text-inverse);
+  overflow: hidden;
+}
+
+/* animated gradient mesh */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(800px circle at 30% 40%, rgba(0, 212, 255, 0.08), transparent 60%),
+    radial-gradient(600px circle at 70% 60%, rgba(123, 97, 255, 0.06), transparent 60%);
+  animation: heroMesh 8s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes heroMesh {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* bottom accent line */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--electric-cyan), var(--plasma-violet), transparent);
+  z-index: 2;
+}
+
+.hero h1 {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: var(--font-display), orbitron-fallback, sans-serif;
+  font-size: clamp(40px, 7vw, 100px);
+  letter-spacing: 4px;
+  line-height: 0.9;
+  color: var(--carbon-100);
+}
+
+.hero h2,
+.hero h3,
+.hero h4,
+.hero h5,
+.hero h6 {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-inverse);
+}
+
+.hero p {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: var(--font-heading), space-grotesk-fallback, sans-serif;
+  font-size: 20px;
+  color: var(--carbon-400);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.hero a.button {
+  margin-top: 24px;
+}
+
+.hero > div:has(picture) {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero picture {
+  display: block;
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero picture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(247, 250, 252, 0.65), rgba(0, 212, 255, 0.05));
+}
+
+.hero img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.hero > div {
+  position: relative;
+  z-index: 1;
+}
+
+/* scan-line overlay */
+.hero-scanline {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 212, 255, 0.015) 2px,
+    rgba(0, 212, 255, 0.015) 4px
+  );
+}
+
+@media (width >= 900px) {
+  .hero {
+    padding: 120px 48px 80px;
+  }
+}

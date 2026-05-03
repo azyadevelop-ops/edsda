@@ -1,0 +1,92 @@
+.cards > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.cards > ul > li {
+  position: relative;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* gradient border overlay on hover */
+.cards > ul > li::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xl);
+  padding: 1px;
+  background: linear-gradient(135deg, var(--electric-cyan), var(--plasma-violet));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cards > ul > li:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--electric-cyan);
+}
+
+.cards > ul > li:hover::before {
+  opacity: 1;
+}
+
+.cards .cards-card-body {
+  padding: 20px 24px;
+}
+
+.cards .cards-card-body h3,
+.cards .cards-card-body h4 {
+  font-family: var(--font-display), orbitron-fallback, sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: var(--heading-font-size-s);
+}
+
+.cards .cards-card-body p {
+  color: var(--text-secondary);
+  font-size: var(--body-font-size-xs);
+  line-height: 1.6;
+}
+
+.cards .cards-card-image {
+  line-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* image bottom gradient fade */
+.cards .cards-card-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to top, var(--glass-bg), transparent);
+  pointer-events: none;
+}
+
+.cards > ul > li img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cards > ul > li:hover img {
+  transform: scale(1.05);
+}

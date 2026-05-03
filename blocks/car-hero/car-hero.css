@@ -1,0 +1,262 @@
+/* Car Hero — full-bleed automotive showcase with color selector */
+.car-hero-container .car-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.car-hero {
+  position: relative;
+  min-height: 600px;
+  background: var(--carbon-900);
+  color: var(--carbon-100);
+  overflow: hidden;
+  --car-hero-glow: var(--electric-cyan);
+}
+
+/* Animated gradient mesh */
+.car-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px circle at 20% 80%, rgba(0, 212, 255, 0.06), transparent 60%),
+    radial-gradient(400px circle at 80% 20%, rgba(123, 97, 255, 0.04), transparent 60%);
+  animation: carHeroMesh 8s ease-in-out infinite alternate;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes carHeroMesh {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Bottom accent line */
+.car-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--electric-cyan), var(--plasma-violet), transparent);
+  z-index: 5;
+}
+
+/* ── Image layer ── */
+.car-hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.car-hero-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.car-hero-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: filter 0.8s ease;
+}
+
+/* Color shader overlay */
+.car-hero-color-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: color;
+  opacity: 0;
+  transition: background-color 0.8s ease, opacity 0.8s ease;
+}
+
+/* Gradient for text readability */
+.car-hero-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(247, 250, 252, 0.6) 40%,
+    rgba(247, 250, 252, 0.25) 70%,
+    rgba(0, 212, 255, 0.02) 100%
+  );
+}
+
+/* ── Content ── */
+.car-hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 600px;
+}
+
+/* Title */
+.car-hero-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 0.95;
+  color: var(--carbon-100);
+  margin: 0 0 16px;
+  text-shadow: 0 0 40px rgba(0, 163, 199, 0.18);
+}
+
+/* Description */
+.car-hero-description {
+  max-width: 560px;
+  margin-bottom: 24px;
+}
+
+.car-hero-description p {
+  font-family: var(--font-body), sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--carbon-300);
+  margin: 0 0 8px;
+}
+
+/* ── Price ── */
+.car-hero-price {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.car-hero-price-label {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--carbon-400);
+}
+
+.car-hero-price-amount {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--electric-cyan);
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+/* ── Color selector ── */
+.car-hero-colors {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.car-hero-colors-label {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--carbon-400);
+  margin-right: 4px;
+}
+
+.car-hero-swatches {
+  display: flex;
+  gap: 10px;
+}
+
+.car-hero-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--carbon-600);
+  background: var(--swatch-color);
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+.car-hero-swatch::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.car-hero-swatch:hover {
+  transform: scale(1.15);
+  border-color: var(--carbon-400);
+}
+
+.car-hero-swatch.active {
+  border-color: var(--electric-cyan);
+  box-shadow:
+    0 0 12px rgba(0, 212, 255, 0.4),
+    0 0 4px rgba(0, 212, 255, 0.2);
+}
+
+.car-hero-swatch.active::after {
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+.car-hero-active-color {
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--carbon-300);
+  min-width: 60px;
+}
+
+/* ── Scanline overlay ── */
+.car-hero-scanline {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 212, 255, 0.012) 2px,
+    rgba(0, 212, 255, 0.012) 4px
+  );
+}
+
+/* ── Responsive ── */
+@media (width >= 900px) {
+  .car-hero {
+    min-height: 700px;
+  }
+
+  .car-hero-content {
+    padding: 140px 48px 80px;
+    min-height: 700px;
+  }
+
+  .car-hero-swatch {
+    width: 36px;
+    height: 36px;
+  }
+
+  .car-hero-description p {
+    font-size: 17px;
+  }
+}

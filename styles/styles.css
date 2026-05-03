@@ -1,0 +1,423 @@
+/*
+ * Velocity — Automotive Design System
+ * Modern futuristic automotive aesthetic
+ */
+
+:root {
+  /* Carbon Neutrals — blue-undertone light palette (inverted scale: 950 = lightest, 50 = darkest) */
+  --carbon-950: #FFFFFF;
+  --carbon-900: #F7FAFC;
+  --carbon-800: #EDF2F7;
+  --carbon-700: #E2E8F0;
+  --carbon-600: #CBD5E0;
+  --carbon-500: #A0AEC0;
+  --carbon-400: #718096;
+  --carbon-300: #4A5568;
+  --carbon-200: #2D3748;
+  --carbon-100: #1A202C;
+  --carbon-50: #0C1017;
+
+  /* Accent — Electric */
+  --electric-cyan: #00D4FF;
+  --electric-cyan-light: #66E5FF;
+  --electric-cyan-dark: #00A3C7;
+  --plasma-violet: #7B61FF;
+  --plasma-violet-light: #A48BFF;
+  --plasma-violet-dark: #5A3FD6;
+
+  /* Status Colors */
+  --status-error: #FF4D6A;
+  --status-success: #00E68A;
+  --status-warning: #FFB830;
+  --status-info: var(--electric-cyan);
+
+  /* Semantic Colors */
+  --background-color: var(--carbon-900);
+  --bg-primary: var(--carbon-950);
+  --bg-dark: var(--carbon-950);
+  --light-color: var(--carbon-100);
+  --dark-color: var(--carbon-600);
+  --text-color: var(--carbon-100);
+  --text-secondary: var(--carbon-300);
+  --text-muted: var(--carbon-500);
+  --text-inverse: var(--carbon-100);
+  --link-color: var(--electric-cyan);
+  --link-hover-color: var(--electric-cyan-light);
+  --border-color: var(--carbon-700);
+  --border-strong: var(--carbon-600);
+
+  /* Glass morphism — light translucent */
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 163, 199, 0.18);
+  --glass-blur: blur(12px);
+
+  /* Glow shadows */
+  --shadow-glow: 0 0 20px rgba(0, 163, 199, 0.18), 0 0 60px rgba(0, 163, 199, 0.06);
+  --shadow-glow-sm: 0 0 10px rgba(0, 163, 199, 0.15);
+
+  /* Typography */
+  --font-display: 'Orbitron', sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --body-font-family: var(--font-body);
+  --heading-font-family: var(--font-heading);
+
+  /* Body sizes */
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 14px;
+
+  /* Heading sizes */
+  --heading-font-size-xxl: 55px;
+  --heading-font-size-xl: 42px;
+  --heading-font-size-l: 32px;
+  --heading-font-size-m: 24px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 14px;
+
+  /* Spacing & Radius — sharper */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgb(7 9 12 / 20%);
+  --shadow-md: 0 4px 12px rgb(7 9 12 / 25%);
+  --shadow-lg: 0 8px 30px rgb(7 9 12 / 30%);
+  --shadow-xl: 0 16px 50px rgb(7 9 12 / 40%);
+
+  /* Nav height */
+  --nav-height: 64px;
+}
+
+/* fallback fonts */
+@font-face {
+  font-family: inter-fallback;
+  size-adjust: 107%;
+  src: local('Arial');
+}
+
+@font-face {
+  font-family: space-grotesk-fallback;
+  size-adjust: 105%;
+  src: local('Arial');
+}
+
+@font-face {
+  font-family: orbitron-fallback;
+  size-adjust: 115%;
+  src: local('Arial Black'), local('Impact');
+}
+
+body {
+  display: none;
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-color);
+  font-family: var(--font-body), inter-fallback, sans-serif;
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.appear {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+header {
+  height: var(--nav-height);
+}
+
+header .header,
+footer .footer {
+  visibility: hidden;
+}
+
+header .header[data-block-status="loaded"],
+footer .footer[data-block-status="loaded"] {
+  visibility: visible;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+  font-weight: 700;
+  line-height: 1.1;
+  scroll-margin: 40px;
+  color: var(--text-color);
+}
+
+h1 {
+  font-family: var(--font-display), orbitron-fallback, sans-serif;
+  font-size: var(--heading-font-size-xxl);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+h2 {
+  font-family: var(--font-display), orbitron-fallback, sans-serif;
+  font-size: var(--heading-font-size-xl);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+h3 {
+  font-family: var(--font-heading), space-grotesk-fallback, sans-serif;
+  font-size: var(--heading-font-size-l);
+  font-weight: 700;
+}
+
+h4 {
+  font-family: var(--font-heading), space-grotesk-fallback, sans-serif;
+  font-size: var(--heading-font-size-m);
+  font-weight: 700;
+}
+
+h5 {
+  font-family: var(--font-heading), space-grotesk-fallback, sans-serif;
+  font-size: var(--heading-font-size-s);
+  font-weight: 600;
+}
+
+h6 {
+  font-family: var(--font-heading), space-grotesk-fallback, sans-serif;
+  font-size: var(--heading-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+}
+
+code,
+pre {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--body-font-size-xs);
+}
+
+pre {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background-color: var(--carbon-800);
+  color: var(--carbon-100);
+  overflow-x: auto;
+  white-space: pre;
+  border: 1px solid var(--carbon-700);
+}
+
+code {
+  background: var(--carbon-800);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--electric-cyan-dark);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+main > div {
+  margin: 40px 16px;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+/* links */
+a:any-link {
+  color: var(--link-color);
+  text-decoration: none;
+  overflow-wrap: break-word;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+  text-decoration: none;
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+}
+
+/* buttons */
+a.button:any-link,
+button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  margin: 12px 0;
+  border: 1px solid var(--electric-cyan);
+  border-radius: var(--radius-md);
+  padding: 12px 24px;
+  font-family: var(--font-heading), space-grotesk-fallback, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--electric-cyan), var(--plasma-violet));
+  color: var(--carbon-50);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+
+a.button:hover,
+a.button:focus,
+button:hover,
+button:focus {
+  background: linear-gradient(135deg, var(--electric-cyan-light), var(--plasma-violet-light));
+  box-shadow: var(--shadow-glow);
+  cursor: pointer;
+  text-shadow: none;
+}
+
+a.button.primary,
+button.primary {
+  background: linear-gradient(135deg, var(--electric-cyan), var(--plasma-violet));
+  color: var(--carbon-50);
+}
+
+a.button.primary:hover,
+button.primary:hover {
+  background: linear-gradient(135deg, var(--electric-cyan-light), var(--plasma-violet-light));
+  box-shadow: var(--shadow-glow);
+}
+
+button:disabled,
+button:disabled:hover {
+  background: var(--carbon-700);
+  border-color: var(--carbon-600);
+  color: var(--carbon-500);
+  cursor: unset;
+  box-shadow: none;
+}
+
+a.button.secondary,
+button.secondary {
+  background: transparent;
+  border: 1px solid var(--carbon-400);
+  color: var(--carbon-100);
+}
+
+a.button.secondary:hover,
+button.secondary:hover {
+  border-color: var(--electric-cyan);
+  color: var(--electric-cyan);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+main img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+.icon {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+}
+
+.icon img {
+  height: 100%;
+  width: 100%;
+}
+
+/* sections */
+main > .section {
+  margin: 40px 0;
+}
+
+main > .section > div {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+main > .section:first-of-type {
+  margin-top: 0;
+}
+
+@media (width >= 900px) {
+  main > .section > div {
+    padding: 0 32px;
+  }
+}
+
+/* section metadata */
+main .section.light,
+main .section.highlight {
+  background-color: var(--carbon-800);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  margin: 0;
+  padding: 40px 0;
+}
+
+main .section.dark {
+  background-color: var(--carbon-950);
+  color: var(--text-inverse);
+  margin: 0;
+  padding: 64px 0;
+  position: relative;
+}
+
+main .section.dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4,
+main .section.dark h5,
+main .section.dark h6 {
+  color: var(--text-inverse);
+}
+
+main .section.dark a:any-link {
+  color: var(--electric-cyan-dark);
+}

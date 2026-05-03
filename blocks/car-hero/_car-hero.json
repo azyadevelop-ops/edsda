@@ -1,0 +1,72 @@
+{
+  "definitions": [
+    {
+      "title": "Car Hero",
+      "id": "car-hero",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Car Hero",
+              "model": "car-hero"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "car-hero",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title",
+          "label": "Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "name": "description",
+          "value": "",
+          "label": "Description",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "price",
+          "label": "Price",
+          "value": ""
+        },
+        {
+          "component": "multiselect",
+          "name": "colors",
+          "label": "Available Colors",
+          "options": [
+            { "name": "White", "value": "white" },
+            { "name": "Black", "value": "black" },
+            { "name": "Silver", "value": "silver" },
+            { "name": "Gray", "value": "gray" },
+            { "name": "Red", "value": "red" },
+            { "name": "Blue", "value": "blue" },
+            { "name": "Brown", "value": "brown" },
+            { "name": "Green", "value": "green" },
+            { "name": "Orange", "value": "orange" },
+            { "name": "Yellow", "value": "yellow" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

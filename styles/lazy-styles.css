@@ -1,0 +1,110 @@
+/* Velocity — Post-LCP animations & ambient effects */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Scroll-reveal base ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Staggered children ── */
+.reveal-children > * > *,
+.reveal-children > ul > li {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-children.revealed > * > *,
+.reveal-children.revealed > ul > li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-children.revealed > * > *:nth-child(1),
+.reveal-children.revealed > ul > li:nth-child(1) { transition-delay: 0s; }
+
+.reveal-children.revealed > * > *:nth-child(2),
+.reveal-children.revealed > ul > li:nth-child(2) { transition-delay: 0.1s; }
+
+.reveal-children.revealed > * > *:nth-child(3),
+.reveal-children.revealed > ul > li:nth-child(3) { transition-delay: 0.2s; }
+
+.reveal-children.revealed > * > *:nth-child(4),
+.reveal-children.revealed > ul > li:nth-child(4) { transition-delay: 0.3s; }
+
+.reveal-children.revealed > * > *:nth-child(5),
+.reveal-children.revealed > ul > li:nth-child(5) { transition-delay: 0.4s; }
+
+.reveal-children.revealed > * > *:nth-child(6),
+.reveal-children.revealed > ul > li:nth-child(6) { transition-delay: 0.5s; }
+
+.reveal-children.revealed > * > *:nth-child(7),
+.reveal-children.revealed > ul > li:nth-child(7) { transition-delay: 0.6s; }
+
+.reveal-children.revealed > * > *:nth-child(n+8),
+.reveal-children.revealed > ul > li:nth-child(n+8) { transition-delay: 0.7s; }
+
+/* ── Ambient floating orbs ── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(600px circle at 20% 30%, rgba(0, 212, 255, 0.03), transparent 70%),
+    radial-gradient(500px circle at 80% 70%, rgba(123, 97, 255, 0.03), transparent 70%);
+  animation: ambientDrift 20s ease-in-out infinite alternate;
+}
+
+@keyframes ambientDrift {
+  0% {
+    background-position: 0% 0%, 100% 100%;
+  }
+
+  100% {
+    background-position: 10% 10%, 90% 85%;
+  }
+}
+
+/* ── Focus-visible glow ring ── */
+:focus-visible {
+  outline: 2px solid var(--electric-cyan);
+  outline-offset: 2px;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+}

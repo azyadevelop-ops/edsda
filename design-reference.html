@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velocity — Design System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Carbon Neutrals */
+            --carbon-950: #07090C;
+            --carbon-900: #0C1017;
+            --carbon-800: #131721;
+            --carbon-700: #1C2233;
+            --carbon-600: #2A3347;
+            --carbon-500: #4A5568;
+            --carbon-400: #718096;
+            --carbon-300: #A0AEC0;
+            --carbon-200: #CBD5E0;
+            --carbon-100: #E2E8F0;
+            --carbon-50:  #F7FAFC;
+
+            /* Accent */
+            --electric-cyan: #00D4FF;
+            --electric-cyan-light: #66E5FF;
+            --electric-cyan-dark: #00A3C7;
+            --plasma-violet: #7B61FF;
+            --plasma-violet-light: #A48BFF;
+            --plasma-violet-dark: #5A3FD6;
+
+            /* Status */
+            --status-error: #FF4D6A;
+            --status-success: #00E68A;
+            --status-warning: #FFB830;
+            --status-info: var(--electric-cyan);
+
+            /* Glass morphism */
+            --glass-bg: rgba(19, 23, 33, 0.6);
+            --glass-border: rgba(0, 212, 255, 0.12);
+
+            /* Typography */
+            --font-display: 'Orbitron', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            /* Radius */
+            --radius-sm: 2px;
+            --radius-md: 4px;
+            --radius-lg: 8px;
+            --radius-xl: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--carbon-950);
+            color: var(--carbon-100);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+        /* ═══ Hero ═══ */
+        .sg-hero {
+            position: relative;
+            padding: 100px 32px 80px;
+            background: var(--carbon-900);
+            overflow: hidden;
+        }
+
+        .sg-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(600px circle at 25% 40%, rgba(0,212,255,0.08), transparent 60%),
+                radial-gradient(400px circle at 75% 60%, rgba(123,97,255,0.06), transparent 60%);
+        }
+
+        .sg-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--electric-cyan), var(--plasma-violet), transparent);
+        }
+
+        .sg-hero h1 {
+            position: relative;
+            font-family: var(--font-display);
+            font-size: clamp(48px, 6vw, 80px);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: white;
+            line-height: 0.95;
+        }
+
+        .sg-hero h1 span {
+            display: block;
+            font-size: 0.4em;
+            letter-spacing: 6px;
+            color: var(--carbon-400);
+            margin-top: 12px;
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        /* ═══ Section ═══ */
+        .sg-section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--carbon-700);
+        }
+
+        .sg-section-title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--electric-cyan);
+            margin-bottom: 48px;
+        }
+
+        .sg-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--carbon-500);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        /* ═══ Color Swatches ═══ */
+        .sg-palette { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+
+        .sg-swatch {
+            width: 120px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--carbon-700);
+        }
+
+        .sg-swatch-color {
+            height: 80px;
+        }
+
+        .sg-swatch-info {
+            padding: 10px;
+            background: var(--carbon-800);
+            font-size: 12px;
+        }
+
+        .sg-swatch-info strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            margin-bottom: 2px;
+            color: var(--carbon-100);
+        }
+
+        .sg-swatch-info code {
+            font-family: var(--font-mono);
+            color: var(--carbon-400);
+            font-size: 11px;
+        }
+
+        /* ═══ Typography ═══ */
+        .sg-type-row {
+            display: flex;
+            align-items: baseline;
+            gap: 40px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--carbon-800);
+        }
+
+        .sg-type-meta {
+            flex: 0 0 200px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--carbon-500);
+        }
+
+        /* ═══ Buttons ═══ */
+        .sg-button-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 24px; }
+
+        .sg-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--electric-cyan);
+        }
+
+        .sg-btn-primary {
+            background: linear-gradient(135deg, var(--electric-cyan), var(--plasma-violet));
+            color: var(--carbon-950);
+        }
+
+        .sg-btn-primary:hover {
+            box-shadow: 0 0 20px rgba(0,212,255,0.3), 0 0 60px rgba(0,212,255,0.1);
+        }
+
+        .sg-btn-secondary {
+            background: transparent;
+            border: 1px solid var(--carbon-400);
+            color: var(--carbon-100);
+        }
+
+        .sg-btn-secondary:hover {
+            border-color: var(--electric-cyan);
+            color: var(--electric-cyan);
+            box-shadow: 0 0 10px rgba(0,212,255,0.15);
+        }
+
+        .sg-btn-disabled {
+            background: var(--carbon-700);
+            border-color: var(--carbon-600);
+            color: var(--carbon-500);
+            cursor: not-allowed;
+        }
+
+        /* ═══ Glass Card ═══ */
+        .sg-glass-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .sg-glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .sg-glass-card:hover {
+            border-color: var(--electric-cyan);
+            box-shadow: 0 0 20px rgba(0,212,255,0.15), 0 0 60px rgba(0,212,255,0.05);
+            transform: translateY(-4px);
+        }
+
+        .sg-glass-card h4 {
+            font-family: var(--font-display);
+            font-size: 16px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--carbon-100);
+            margin-bottom: 12px;
+        }
+
+        .sg-glass-card p {
+            color: var(--carbon-400);
+            font-size: 14px;
+        }
+
+        /* ═══ Spacing/Radius ═══ */
+        .sg-radius-demo { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; }
+
+        .sg-radius-box {
+            width: 80px;
+            height: 80px;
+            background: var(--carbon-700);
+            border: 1px solid var(--carbon-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--carbon-400);
+        }
+
+        /* ═══ Animation Docs ═══ */
+        .sg-anim-box {
+            padding: 24px;
+            border: 1px solid var(--carbon-700);
+            border-radius: var(--radius-md);
+            margin: 12px 0;
+        }
+
+        .sg-anim-box code {
+            font-family: var(--font-mono);
+            color: var(--electric-cyan);
+            font-size: 14px;
+        }
+
+        .sg-anim-box p {
+            color: var(--carbon-400);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* ═══ Shadows Demo ═══ */
+        .sg-shadow-row { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; }
+
+        .sg-shadow-box {
+            width: 140px;
+            height: 100px;
+            background: var(--carbon-800);
+            border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--carbon-400);
+        }
+
+        /* ═══ Footer ═══ */
+        .sg-footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--carbon-500);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <div class="sg-hero">
+        <div class="container">
+            <h1>Velocity<span>Automotive Design System</span></h1>
+        </div>
+    </div>
+
+    <!-- Colors -->
+    <div class="sg-section">
+        <div class="container">
+            <h2 class="sg-section-title">Color Palette</h2>
+
+            <p class="sg-label">Carbon Neutrals</p>
+            <div class="sg-palette">
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#07090C"></div><div class="sg-swatch-info"><strong>950</strong><code>#07090C</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#0C1017"></div><div class="sg-swatch-info"><strong>900</strong><code>#0C1017</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#131721"></div><div class="sg-swatch-info"><strong>800</strong><code>#131721</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#1C2233"></div><div class="sg-swatch-info"><strong>700</strong><code>#1C2233</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#2A3347"></div><div class="sg-swatch-info"><strong>600</strong><code>#2A3347</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#4A5568"></div><div class="sg-swatch-info"><strong>500</strong><code>#4A5568</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#718096"></div><div class="sg-swatch-info"><strong>400</strong><code>#718096</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#A0AEC0"></div><div class="sg-swatch-info"><strong>300</strong><code>#A0AEC0</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#CBD5E0"></div><div class="sg-swatch-info"><strong>200</strong><code>#CBD5E0</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#E2E8F0"></div><div class="sg-swatch-info"><strong>100</strong><code>#E2E8F0</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#F7FAFC"></div><div class="sg-swatch-info"><strong>50</strong><code>#F7FAFC</code></div></div>
+            </div>
+
+            <p class="sg-label">Accent — Electric Cyan</p>
+            <div class="sg-palette">
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#00A3C7"></div><div class="sg-swatch-info"><strong>Dark</strong><code>#00A3C7</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#00D4FF"></div><div class="sg-swatch-info"><strong>Default</strong><code>#00D4FF</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#66E5FF"></div><div class="sg-swatch-info"><strong>Light</strong><code>#66E5FF</code></div></div>
+            </div>
+
+            <p class="sg-label">Accent — Plasma Violet</p>
+            <div class="sg-palette">
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#5A3FD6"></div><div class="sg-swatch-info"><strong>Dark</strong><code>#5A3FD6</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#7B61FF"></div><div class="sg-swatch-info"><strong>Default</strong><code>#7B61FF</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#A48BFF"></div><div class="sg-swatch-info"><strong>Light</strong><code>#A48BFF</code></div></div>
+            </div>
+
+            <p class="sg-label">Status Colors</p>
+            <div class="sg-palette">
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#FF4D6A"></div><div class="sg-swatch-info"><strong>Error</strong><code>#FF4D6A</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#00E68A"></div><div class="sg-swatch-info"><strong>Success</strong><code>#00E68A</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#FFB830"></div><div class="sg-swatch-info"><strong>Warning</strong><code>#FFB830</code></div></div>
+                <div class="sg-swatch"><div class="sg-swatch-color" style="background:#00D4FF"></div><div class="sg-swatch-info"><strong>Info</strong><code>#00D4FF</code></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="sg-section">
+        <div class="container">
+            <h2 class="sg-section-title">Typography</h2>
+
+            <div class="sg-type-row">
+                <div class="sg-type-meta">Orbitron 700<br>Display / H1-H2<br>Uppercase, wide spacing</div>
+                <div style="font-family:var(--font-display);font-size:48px;text-transform:uppercase;letter-spacing:3px;font-weight:700">VELOCITY</div>
+            </div>
+
+            <div class="sg-type-row">
+                <div class="sg-type-meta">Space Grotesk 700<br>Headings / H3-H6<br>UI labels, buttons, nav</div>
+                <div style="font-family:var(--font-heading);font-size:32px;font-weight:700">Performance Redefined</div>
+            </div>
+
+            <div class="sg-type-row">
+                <div class="sg-type-meta">Inter 400<br>Body text<br>Descriptions, paragraphs</div>
+                <div style="font-family:var(--font-body);font-size:16px;color:var(--carbon-300)">The quick brown fox jumps over the lazy dog. Every detail matters when engineering precision instruments at the speed of light. Body text uses Inter for maximum readability across all viewport sizes.</div>
+            </div>
+
+            <div class="sg-type-row">
+                <div class="sg-type-meta">JetBrains Mono 400<br>Monospace<br>Technical data, coords</div>
+                <div style="font-family:var(--font-mono);font-size:14px;color:var(--electric-cyan)">0-100 km/h: 1.85s &bull; Top speed: 412 km/h &bull; Power: 1,914 HP</div>
+            </div>
+
+            <h3 style="font-family:var(--font-heading);margin-top:48px;margin-bottom:24px;color:var(--carbon-100)">Heading Hierarchy</h3>
+
+            <h1 style="font-family:var(--font-display);font-size:55px;letter-spacing:3px;text-transform:uppercase;line-height:0.9;margin-bottom:16px">H1 — Orbitron Display</h1>
+            <h2 style="font-family:var(--font-display);font-size:42px;letter-spacing:2px;text-transform:uppercase;line-height:1;margin-bottom:16px">H2 — Orbitron Section</h2>
+            <h3 style="font-family:var(--font-heading);font-size:32px;font-weight:700;margin-bottom:12px">H3 — Space Grotesk Bold</h3>
+            <h4 style="font-family:var(--font-heading);font-size:24px;font-weight:700;margin-bottom:12px">H4 — Space Grotesk Bold</h4>
+            <h5 style="font-family:var(--font-heading);font-size:18px;font-weight:600;margin-bottom:12px">H5 — Space Grotesk Semibold</h5>
+            <h6 style="font-family:var(--font-heading);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--carbon-500);margin-bottom:12px">H6 — Space Grotesk Uppercase</h6>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="sg-section">
+        <div class="container">
+            <h2 class="sg-section-title">Buttons</h2>
+
+            <p class="sg-label">Primary — Cyan to Violet Gradient</p>
+            <div class="sg-button-row">
+                <button class="sg-btn sg-btn-primary">Configure Now</button>
+                <button class="sg-btn sg-btn-primary">Reserve Yours</button>
+            </div>
+
+            <p class="sg-label">Secondary — Transparent + Border</p>
+            <div class="sg-button-row">
+                <button class="sg-btn sg-btn-secondary">Learn More</button>
+                <button class="sg-btn sg-btn-secondary">View Specs</button>
+            </div>
+
+            <p class="sg-label">Disabled</p>
+            <div class="sg-button-row">
+                <button class="sg-btn sg-btn-disabled" disabled>Unavailable</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Glass Morphism -->
+    <div class="sg-section">
+        <div class="container">
+            <h2 class="sg-section-title">Glass Morphism</h2>
+
+            <p class="sg-label">Glass cards — frosted background with subtle glow hover</p>
+            <div class="sg-glass-demo">
+                <div class="sg-glass-card">
+                    <h4>Performance</h4>
+                    <p>Dual-motor AWD with torque vectoring delivers precision handling at any speed.</p>
+                </div>
+                <div class="sg-glass-card">
+                    <h4>Aerodynamics</h4>
+                    <p>Active aero surfaces and underbody diffuser achieve 0.21 Cd coefficient.</p>
+                </div>
+                <div class="sg-glass-card">
+                    <h4>Technology</h4>
+                    <p>AI-driven chassis control adapts 1,000 times per second for optimal grip.</p>
+                </div>
+            </div>
+
+            <div style="margin-top:32px; padding:24px; background:var(--carbon-800); border-radius:var(--radius-md); border:1px solid var(--carbon-700)">
+                <p class="sg-label" style="margin-bottom:12px">Glass Tokens</p>
+                <code style="font-family:var(--font-mono); color:var(--electric-cyan); font-size:13px; display:block; line-height:2">
+                    --glass-bg: rgba(19, 23, 33, 0.6);<br>
+                    --glass-border: rgba(0, 212, 255, 0.12);<br>
+                    --glass-blur: blur(12px);<br>
+                    --shadow-glow: 0 0 20px rgba(0,212,255,0.15), 0 0 60px rgba(0,212,255,0.05);<br>
+                    --shadow-glow-sm: 0 0 10px rgba(0,212,255,0.1);
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <!-- Radius & Shadows -->
+    <div class="sg-section">
+        <div class="container">
+            <h2 class="sg-section-title">Radius & Shadows</h2>
+
+            <p class="sg-label">Border Radius</p>
+            <div class="sg-radius-demo">
+                <div class="sg-radius-box" style="border-radius:2px">2px</div>
+                <div class="sg-radius-box" style="border-radius:4px">4px</div>
+                <div class="sg-radius-box" style="border-radius:8px">8px</div>
+                <div class="sg-radius-box" style="border-radius:12px">12px</div>
+            </div>
+
+            <p class="sg-label" style="margin-top:40px">Shadows</p>
+            <div class="sg-shadow-row">
+                <div class="sg-shadow-box" style="box-shadow:0 1px 3px rgb(7 9 12/20%)">sm</div>
+                <div class="sg-shadow-box" style="box-shadow:0 4px 12px rgb(7 9 12/25%)">md</div>
+                <div class="sg-shadow-box" style="box-shadow:0 8px 30px rgb(7 9 12/30%)">lg</div>
+                <div class="sg-shadow-box" style="box-shadow:0 16px 50px rgb(7 9 12/40%)">xl</div>
+            </div>
+
+            <p class="sg-label" style="margin-top:40px">Glow Shadows</p>
+            <div class="sg-shadow-row">
+                <div class="sg-shadow-box" style="box-shadow:0 0 10px rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.12)">glow-sm</div>
+                <div class="sg-shadow-box" style="box-shadow:0 0 20px rgba(0,212,255,0.15),0 0 60px rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.12)">glow</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Animations -->
+    <div class="sg-section">
+        <div class="container">
+            <h2 class="sg-section-title">Animations</h2>
+
+            <div class="sg-anim-box">
+                <code>.reveal</code>
+                <p>Fade-up on scroll (opacity 0→1, translateY 30→0). Applied via IntersectionObserver in delayed.js.</p>
+            </div>
+
+            <div class="sg-anim-box">
+                <code>.reveal-children</code>
+                <p>Staggered child animation — each child fades in with 0.1s delay increment (up to 0.7s for 8th+ child).</p>
+            </div>
+
+            <div class="sg-anim-box">
+                <code>.reveal-left / .reveal-right</code>
+                <p>Slide-in from sides (translateX ±40px → 0).</p>
+            </div>
+
+            <div class="sg-anim-box">
+                <code>Hero entrance</code>
+                <p>Staggered fade-up of h1, p, and button elements with 0.15s delay per item. Managed in hero.js.</p>
+            </div>
+
+            <div class="sg-anim-box">
+                <code>prefers-reduced-motion</code>
+                <p>All animations are disabled when the user has enabled reduced motion. Handled in both hero.js and delayed.js.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design Rules -->
+    <div class="sg-section">
+        <div class="container">
+            <h2 class="sg-section-title">Design Rules</h2>
+
+            <ol style="color:var(--carbon-300); line-height:2.2; padding-left:20px">
+                <li><code style="background:var(--carbon-800);padding:2px 8px;border-radius:3px;color:var(--electric-cyan)">--electric-cyan</code> is the primary action color — reserve for CTAs, active states, key data, links</li>
+                <li><code style="background:var(--carbon-800);padding:2px 8px;border-radius:3px;color:var(--plasma-violet)">--plasma-violet</code> is secondary — use for gradients and accents alongside cyan</li>
+                <li>Never use <strong>Orbitron</strong> for body text or below 20px</li>
+                <li>Never use <strong>Space Grotesk</strong> for body/paragraph text (use Inter)</li>
+                <li>Dark-first: body background is always <code style="background:var(--carbon-800);padding:2px 8px;border-radius:3px;color:var(--carbon-400)">--carbon-950</code></li>
+                <li>Use <code style="background:var(--carbon-800);padding:2px 8px;border-radius:3px;color:#FF4D6A">--status-error</code> for errors, never cyan or violet</li>
+                <li>Glass morphism: always pair <code style="background:var(--carbon-800);padding:2px 8px;border-radius:3px;color:var(--carbon-400)">backdrop-filter: blur()</code> with <code style="background:var(--carbon-800);padding:2px 8px;border-radius:3px;color:var(--carbon-400)">--glass-border</code></li>
+                <li>Max 2 accent colors per view (cyan + violet)</li>
+                <li>Respect <code style="background:var(--carbon-800);padding:2px 8px;border-radius:3px;color:var(--carbon-400)">prefers-reduced-motion</code> — all animations must be skippable</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="sg-footer">
+        <div class="container">
+            Velocity Design System &bull; Built for speed
+        </div>
+    </div>
+
+</body>
+</html>
