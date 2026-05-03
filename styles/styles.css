@@ -4,18 +4,18 @@
  */
 
 :root {
-  /* Carbon Neutrals — blue-undertone light palette (inverted scale: 950 = lightest, 50 = darkest) */
-  --carbon-950: #FFFFFF;
-  --carbon-900: #F7FAFC;
-  --carbon-800: #EDF2F7;
-  --carbon-700: #E2E8F0;
-  --carbon-600: #CBD5E0;
-  --carbon-500: #A0AEC0;
+  /* Carbon Neutrals — blue-undertone dark palette (950 = deepest, 50 = lightest) */
+  --carbon-950: #07090C;
+  --carbon-900: #0C1017;
+  --carbon-800: #131721;
+  --carbon-700: #1C2233;
+  --carbon-600: #2A3347;
+  --carbon-500: #4A5568;
   --carbon-400: #718096;
-  --carbon-300: #4A5568;
-  --carbon-200: #2D3748;
-  --carbon-100: #1A202C;
-  --carbon-50: #0C1017;
+  --carbon-300: #A0AEC0;
+  --carbon-200: #CBD5E0;
+  --carbon-100: #E2E8F0;
+  --carbon-50: #F7FAFC;
 
   /* Accent — Electric */
   --electric-cyan: #00D4FF;
@@ -46,14 +46,14 @@
   --border-color: var(--carbon-700);
   --border-strong: var(--carbon-600);
 
-  /* Glass morphism — light translucent */
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(0, 163, 199, 0.18);
+  /* Glass morphism — dark translucent */
+  --glass-bg: rgba(19, 23, 33, 0.6);
+  --glass-border: rgba(0, 212, 255, 0.12);
   --glass-blur: blur(12px);
 
   /* Glow shadows */
-  --shadow-glow: 0 0 20px rgba(0, 163, 199, 0.18), 0 0 60px rgba(0, 163, 199, 0.06);
-  --shadow-glow-sm: 0 0 10px rgba(0, 163, 199, 0.15);
+  --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.15), 0 0 60px rgba(0, 212, 255, 0.05);
+  --shadow-glow-sm: 0 0 10px rgba(0, 212, 255, 0.1);
 
   /* Typography */
   --font-display: 'Orbitron', sans-serif;

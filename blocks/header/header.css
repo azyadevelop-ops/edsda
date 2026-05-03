@@ -1,6 +1,6 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(12, 16, 23, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--glass-border);
@@ -285,7 +285,7 @@ header nav .nav-sections ul > li > ul > li {
     width: 200px;
     top: 150%;
     padding: 16px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(19, 23, 33, 0.95);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
@@ -303,7 +303,7 @@ header nav .nav-sections ul > li > ul > li {
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid rgba(255, 255, 255, 0.95);
+    border-bottom: 8px solid rgba(19, 23, 33, 0.95);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
